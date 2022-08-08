@@ -24,11 +24,11 @@ if (isset($_SESSION['id'])) {
         $nome = $_POST["nome"];
         $telefone = $_POST["telefone"];
         $email = $_POST["email"];
-        $senha = $_POST["senha"];
+        $senha = md5($_POST["senha"]);
         $register->bindValue(':nome', $nome);
         $register->bindParam(':telefone', $telefone);
         $register->bindParam(':email', $email);
-        $register->bindParam(':senha', md5($senha));
+        $register->bindParam(':senha', $senha);
         $register->execute();
         header('location:index.php');
         exit;

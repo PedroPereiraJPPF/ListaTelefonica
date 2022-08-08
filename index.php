@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <?php
 include_once('conexao.php');
 $select = "SELECT * FROM lista";
@@ -23,9 +22,19 @@ $usuarios = $select->fetchAll();
 <body>
     <nav class="cabecalho">
         <ul class="menu">
-            <li><a href="http://localhost/Projeto%20PDO/dadosLogado.php">Meus dados</a></li>
-            <li><a href="http://localhost/Projeto%20PDO/registro.php">Registrar</a></li>
-            <li><a href="http://localhost/Projeto%20PDO/login.php">Logar</a></li>
+            <?php 
+            if(isset($_SESSION['id'])){  
+            ?>
+            <li><a href="http://localhost/ListaTelefonica/logout.php">Logout</a></li>
+            <li><a href="http://localhost/ListaTelefonica/dadosLogado.php">Meus dados</a></li>
+            <?php 
+            }else{
+            ?>
+            <li><a href="http://localhost/ListaTelefonica/registro.php">Registrar</a></li>
+            <li><a href="http://localhost/ListaTelefonica/login.php">Logar</a></li>
+            <?php 
+            }
+            ?>
         </ul>
     </nav>
     <section class="visualizar">
@@ -35,8 +44,8 @@ $usuarios = $select->fetchAll();
             </tr>
             <TR>
                 <td>Nome</td>
-                <td>Telefone</td>
                 <td>Email</td>
+                <td>Telefone</td>
             </TR>
             <?php
             foreach ($usuarios as $usus) {
